@@ -5,13 +5,17 @@ import React,{ useState } from 'react';
 
 function ExpenseItem(props) {
 
+  //to update or do any changes in the component contents we should use React HOOKS 
+  const [title,setTitle]=useState(props.title);
+  // these are called as React HOOKS which they all are start with 'use' and they should be only called inside of the functions  
+  //useState will always returns exactly 2 elements 1st one is the old one and 2nd is the updated one
   
-  let title=props.title;
 
 
   function clickHandler() {
-    title='Updated';
-
+    setTitle('Updated!');
+    //Calling the HOOK useState
+    console.log("Title Updated!");
   }
 
   return (
