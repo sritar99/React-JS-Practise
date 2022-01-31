@@ -1,6 +1,6 @@
 import "./ExpenseForm.css";
 import React,{ useState } from 'react';
-function ExpenseForm() {
+function ExpenseForm(props) {
 
     //one way
     const [enteredTitle,setEnteredTitle]=useState('');
@@ -46,14 +46,19 @@ function ExpenseForm() {
         //Actually when user submits a form the page is reloaded so to avoid that we can use preventDefault.
 
         //Gathering the updated details entered by the user after submitting the form
-        const newExpenseData={
+        const expenseData={
             title:enteredTitle,
             amount:enteredAmount,
             date: new Date(enteredDate)
         };
 
-        console.log(newExpenseData);
+        //console.log(expenseData);
+        //calling the Function using props that which is passed from NewExpense Component to this component and thereby passing the object which has data to that function
+        props.onSaveExpenseData(expenseData);
+
+
         //clearing all the details which are entered and show it as empty for entering the new data.
+        
         setEnteredTitle('');
         setEnteredAmount('');
         setEnteredDate('');
@@ -63,6 +68,7 @@ function ExpenseForm() {
 
 
   return (
+      // Best practise is to use event handler in the form tag but not in the submit button tag
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
