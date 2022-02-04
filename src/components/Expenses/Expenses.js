@@ -11,6 +11,24 @@ function Expenses(props) {
     console.log("selected Year : " + selectedYear);
     setFilteredYear(selectedYear);
   }
+  {/* Rendering the expense items dynamically using filter function to get the contents of particular year*/}
+  const filteredExpenses = props.expenses.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
+
+  let FilteredContent= <p>No Expenses Found.</p> ;
+  if(filteredExpenses.length > 0){
+    FilteredContent=filteredExpenses.map(function (expense) {
+      return (
+        <ExpenseItem
+          key={expense.id}
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+        ></ExpenseItem>
+      );
+    })
+  }
 
   return (
     <div>
@@ -19,19 +37,9 @@ function Expenses(props) {
           defaultYear={filteredYear}
           onFilterYearChange={filterChangeHandler}
         ></ExpenseFilter>
-        {/* Rendering the expense items dynamically using MAP function */}
-        {props.expenses.map(function(expense){
-          if(expense.date.getFullYear()==filteredYear){
-            return (
-              <ExpenseItem
-                key={expense.id}
-                title={expense.title}
-                amount={expense.amount}
-                date={expense.date}>
-              </ExpenseItem>
-            )
-          }
-          })}
+        
+{/* Rendering the expense items dynamically corressponding to the particular year if thers no data it'll show no expenses */}
+        {FilteredContent}
 
         {/* <ExpenseItem
           title={props.expenses[0].title}
