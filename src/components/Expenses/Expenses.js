@@ -20,14 +20,18 @@ function Expenses(props) {
           onFilterYearChange={filterChangeHandler}
         ></ExpenseFilter>
         {/* Rendering the expense items dynamically using MAP function */}
-        {props.expenses.map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}>
-          </ExpenseItem>
-        ))}
+        {props.expenses.map(function(expense){
+          if(expense.date.getFullYear()==filteredYear){
+            return (
+              <ExpenseItem
+                key={expense.id}
+                title={expense.title}
+                amount={expense.amount}
+                date={expense.date}>
+              </ExpenseItem>
+            )
+          }
+          })}
 
         {/* <ExpenseItem
           title={props.expenses[0].title}
