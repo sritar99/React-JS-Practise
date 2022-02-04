@@ -17,7 +17,7 @@ function ExpenseItem(props) {
   //   //Calling the HOOK useState
   //   console.log("Title Updated!");
   // }
-
+  
   return (
     <Card className="expense-item">
       <ExpenseDate date={props.date}></ExpenseDate>

@@ -8,7 +8,7 @@ function NewExpense(props){
             ...enteredExpenseData,
             id:Math.random().toString()
         };
-        console.log(expenseData);
+        //console.log(expenseData);
         props.onAddExpenseData(expenseData);
         //calling the Function using props that which is passed from App Component to this component and thereby passing the object which has data to that function
 
